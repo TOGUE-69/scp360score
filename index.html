@@ -180,10 +180,17 @@ const headers = {
 };
 
 async function api(path) {
-  const r = await fetch(BASE + path, { headers });
-  if (!r.ok) throw new Error('HTTP ' + r.status);
+  // On extrait la date de l'URL pour la passer proprement
+  const urlParams = new URLSearchParams(path.split('?')[1]);
+  const date = urlParams.get('date');
+  
+  // On appelle ton dossier /api/matches créé à l'étape 1
+  const r = await fetch(`${BASE}?date=${date}`);
+  
+  if (!r.ok) throw new Error('Erreur de connexion au serveur');
   return r.json();
 }
+
 
 function getDate(offset=0) {
   const d = new Date();
