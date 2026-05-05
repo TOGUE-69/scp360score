@@ -364,7 +364,7 @@ async function loadStandings(id, name, el) {
   const c = document.getElementById('standings-container');
   c.innerHTML = '<div class="loading"><div class="spinner"></div><div class="loading-text">CHARGEMENT...</div></div>';
   try {
-const data = await api(`?date=${date}`);
+const data = await api('?date=' + date); // 'date' changera tout seul chaque jour
 
     const rows = st.map(t => {
       const rank = t.rank || t.position || t.pos || 0;
