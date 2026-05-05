@@ -364,9 +364,7 @@ async function loadStandings(id, name, el) {
   const c = document.getElementById('standings-container');
   c.innerHTML = '<div class="loading"><div class="spinner"></div><div class="loading-text">CHARGEMENT...</div></div>';
   try {
-    const data = await api('/football-get-league-standings?leagueId=' + id);
-    const st = data.response?.standings?.[0] || data.standings?.[0] || data.data || [];
-    if (!st.length) { c.innerHTML = '<div class="no-matches">CLASSEMENT NON DISPONIBLE</div>'; return; }
+const data = await api(`?date=${date}`);
 
     const rows = st.map(t => {
       const rank = t.rank || t.position || t.pos || 0;
